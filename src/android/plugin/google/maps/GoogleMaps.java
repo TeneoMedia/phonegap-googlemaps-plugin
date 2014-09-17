@@ -84,7 +84,6 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.VisibleRegion;
 
-@SuppressWarnings("deprecation")
 public class GoogleMaps extends CordovaPlugin implements View.OnClickListener, OnMarkerClickListener,
       OnInfoWindowClickListener, OnMapClickListener, OnMapLongClickListener,
       OnCameraChangeListener, OnMapLoadedCallback, OnMarkerDragListener,
@@ -548,7 +547,7 @@ public class GoogleMaps extends CordovaPlugin implements View.OnClickListener, O
     return;
   }
   private int contentToView(long d) {
-    return Math.round(d * webView.getScale());
+    return Math.round(d * density);
   }
   
   //-----------------------------------
@@ -719,6 +718,7 @@ public class GoogleMaps extends CordovaPlugin implements View.OnClickListener, O
     callbackContext.success();
   }
   
+  @SuppressWarnings("deprecation")
   private void updateMapViewLayout() {
     try {
       int divW = contentToView(mapDivLayoutJSON.getLong("width") );
